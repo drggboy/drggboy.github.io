@@ -5,8 +5,6 @@ tags:
 
 ---
 
-# MATLAB  实验报告
-
 ## 实验题目
 
 利用有限差分法求解
@@ -22,6 +20,8 @@ $$
 
 1. 用 *sparse* 命令组装有限差分矩阵 A。
 2. 算出区间 [-1,1] [-1,1] 分段数为 [5，10，20，40，80，160] 下的数值解及误差，画出数值解图像，并给出误差分析。
+
+<!--more-->
 
 ## 实现算法：
 
@@ -198,15 +198,15 @@ end
 
 ### 拟合图像：
 
-![拟合图像](D:\Hexo分支\drggboy.github.io\source\_posts\MATLAB-实验报告\拟合图像.png)
+![拟合图像](MATLAB-实验报告\拟合图像.png)
 
 ### 稀疏矩阵A部分项：
 
-![稀疏矩阵A](D:\Hexo分支\drggboy.github.io\source\_posts\MATLAB-实验报告\稀疏矩阵A.png)
+![稀疏矩阵A](MATLAB-实验报告\稀疏矩阵A.png)
 
 ### 误差项:
 
-![误差项](D:\Hexo分支\drggboy.github.io\source\_posts\MATLAB-实验报告\误差项.png)
+![误差项](MATLAB-实验报告\误差项.png)
 
 ### 结果分析：
 
