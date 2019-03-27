@@ -2,6 +2,7 @@
 title: MATLAB  实验报告
 date: 2019-03-27 21:02:30
 tags:
+mathjax: true
 
 ---
 
