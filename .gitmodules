@@ -1,0 +1,3 @@
+[submodule "themes/landfarz"]
+	path = themes/landfarz
+	url = https://github.com/drggboy/hexo-theme-landfarz.git
