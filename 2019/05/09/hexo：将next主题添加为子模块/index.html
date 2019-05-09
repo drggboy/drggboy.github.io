@@ -96,13 +96,18 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="个人博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="hexo：将next主题添加为子模块一、将next主题fork至远程仓库二、使用 Git submodules 的方式来选择一个主题1git submodule add https://github.com/drggboy/hexo-theme-next.git themes/next git 便会将 hexo-theme-next 主题作为一个项目子模块 clone 到 themes/next">
+<meta name="keywords" content="next">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo：将next主题添加为子模块">
+<meta property="og:url" content="http://yoursite.com/2019/05/09/hexo：将next主题添加为子模块/index.html">
 <meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="hexo：将next主题添加为子模块一、将next主题fork至远程仓库二、使用 Git submodules 的方式来选择一个主题1git submodule add https://github.com/drggboy/hexo-theme-next.git themes/next git 便会将 hexo-theme-next 主题作为一个项目子模块 clone 到 themes/next">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-09T13:46:48.796Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="个人博客">
+<meta name="twitter:title" content="hexo：将next主题添加为子模块">
+<meta name="twitter:description" content="hexo：将next主题添加为子模块一、将next主题fork至远程仓库二、使用 Git submodules 的方式来选择一个主题1git submodule add https://github.com/drggboy/hexo-theme-next.git themes/next git 便会将 hexo-theme-next 主题作为一个项目子模块 clone 到 themes/next">
 
 
 
@@ -110,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/09/hexo：将next主题添加为子模块/">
 
 
 
@@ -120,7 +125,7 @@
   };
 </script>
 
-  <title>个人博客</title>
+  <title>hexo：将next主题添加为子模块 | 个人博客</title>
   
 
 
@@ -168,8 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -207,7 +211,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -269,9 +273,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -303,10 +307,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/09/hexo：将next主题添加为子模块/" class="post-title-link" itemprop="url">hexo：将next主题添加为子模块</a>
+          <h1 class="post-title" itemprop="name headline">hexo：将next主题添加为子模块
+
               
             
           </h1>
@@ -388,9 +390,7 @@
       
 
       
-        
-          
-            <a id="more"></a>
+        <a id="more"></a>
 <h1 id="hexo：将next主题添加为子模块"><a href="#hexo：将next主题添加为子模块" class="headerlink" title="hexo：将next主题添加为子模块"></a>hexo：将next主题添加为子模块</h1><h2 id="一、将next主题fork至远程仓库"><a href="#一、将next主题fork至远程仓库" class="headerlink" title="一、将next主题fork至远程仓库"></a>一、将next主题fork至远程仓库</h2><h2 id="二、使用-Git-submodules-的方式来选择一个主题"><a href="#二、使用-Git-submodules-的方式来选择一个主题" class="headerlink" title="二、使用 Git submodules 的方式来选择一个主题"></a>二、使用 Git submodules 的方式来选择一个主题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule add https://github.com/drggboy/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
 <p>git 便会将 <code>hexo-theme-next</code> 主题作为一个项目子模块 clone 到 themes/next 中. 同时 hexo 项目中会自动生成一个 <code>.gitmodules</code> 文件, 这个配置文件中保存了项目 URL 与已经拉取的本地目录之间的映射.</p>
 <h2 id="三、更改主题文件配置"><a href="#三、更改主题文件配置" class="headerlink" title="三、更改主题文件配置"></a>三、更改主题文件配置</h2><h2 id="四、提交子模块的更改"><a href="#四、提交子模块的更改" class="headerlink" title="四、提交子模块的更改"></a>四、提交子模块的更改</h2><p>（1）进入主题文件夹，将子模块的更改推送至远程仓库</p>
@@ -399,8 +399,6 @@
 <p>（3）另外也可以使用 <code>git push --recurse-submodules=on-demand</code> git 会自动尝试推送变更的子项目.</p>
 <p>（4）运行批处理文件 deploy.sh.</p>
 
-          
-        
       
     </div>
 
@@ -421,184 +419,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/MATLAB-实验报告/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Drggboy">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/27/MATLAB-实验报告/" class="post-title-link" itemprop="url">有限差分法  实验报告</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-27 21:02:30" itemprop="dateCreated datePublished" datetime="2019-03-27T21:02:30+08:00">2019-03-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-09 20:54:24" itemprop="dateModified" datetime="2019-05-09T20:54:24+08:00">2019-05-09</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/next/" rel="tag"># next</a>
           
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h2 id="实验题目"><a href="#实验题目" class="headerlink" title="实验题目"></a>实验题目</h2><p>利用有限差分法求解</p>
-<script type="math/tex; mode=display">
--u''(x)+u(x)=f(x);\\
-u(-1)=0,u(1)=0.</script><p>真解为：</p>
-<script type="math/tex; mode=display">
-u(x)=e^{-x^2}(1-x^2).</script><p>要求如下：</p>
-<ol>
-<li>用 <em>sparse</em> 命令组装有限差分矩阵 A。</li>
-<li>算出区间 [-1,1] [-1,1] 分段数为 [5，10，20，40，80，160] 下的数值解及误差，画出数值解图像，并给出误差分析。</li>
-</ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/27/MATLAB-实验报告/#more" rel="contents">
-                Read more &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/27/MATLAB-实验报告/" rel="next" title="有限差分法  实验报告">
+                <i class="fa fa-chevron-left"></i> 有限差分法  实验报告
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
+            
+          </div>
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -608,14 +458,15 @@ u(x)=e^{-x^2}(1-x^2).</script><p>要求如下：</p>
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -635,8 +486,17 @@ u(x)=e^{-x^2}(1-x^2).</script><p>要求如下：</p>
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -716,6 +576,23 @@ u(x)=e^{-x^2}(1-x^2).</script><p>要求如下：</p>
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo：将next主题添加为子模块"><span class="nav-number">1.</span> <span class="nav-text">hexo：将next主题添加为子模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、将next主题fork至远程仓库"><span class="nav-number">1.1.</span> <span class="nav-text">一、将next主题fork至远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、使用-Git-submodules-的方式来选择一个主题"><span class="nav-number">1.2.</span> <span class="nav-text">二、使用 Git submodules 的方式来选择一个主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、更改主题文件配置"><span class="nav-number">1.3.</span> <span class="nav-text">三、更改主题文件配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、提交子模块的更改"><span class="nav-number">1.4.</span> <span class="nav-text">四、提交子模块的更改</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -844,6 +721,10 @@ u(x)=e^{-x^2}(1-x^2).</script><p>要求如下：</p>
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
 
   
 
@@ -860,6 +741,8 @@ u(x)=e^{-x^2}(1-x^2).</script><p>要求如下：</p>
   
 
 
+  
+
 
   
 
@@ -874,14 +757,6 @@ u(x)=e^{-x^2}(1-x^2).</script><p>要求如下：</p>
   
 
   
-  
-    
-      
-        
-      
-    
-      
-    
   
 
   
