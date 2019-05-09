@@ -1,5 +1,5 @@
 ---
-title: MATLAB  实验报告
+title: 有限差分法  实验报告
 date: 2019-03-27 21:02:30
 tags:
 mathjax: true
@@ -30,7 +30,7 @@ $$
 
 ## 程序代码：
 
-建立 model_data.m 文件
+### 建立 model_data.m 文件
 
 ```matlab
 function model = model_data(l, r)
@@ -79,7 +79,7 @@ end
 end
 ```
 
-建立 FDld_bvp.m 文件
+### 建立 FDld_bvp.m 文件
 
 ```matlab
 function [uh, x] = FD1d_bvp(model, NS)
@@ -127,7 +127,7 @@ uh = A \ rhs;
 end
 ```
 
-建立 FD1d_bvp_test.m 文件
+### 建立 FD1d_bvp_test.m 文件
 
 ```matlab 
 function [uh, x] = FD1d_bvp(model, NS)
@@ -175,7 +175,7 @@ uh = A \ rhs;
 end
 ```
 
-建立 FD1d_error.m 文件
+### 建立 FD1d_error.m 文件
 
 ```matlab 
 function [e0, e1, emax] = FD1d_error(solution, uh, X)
