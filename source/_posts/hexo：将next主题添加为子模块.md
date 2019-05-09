@@ -10,9 +10,9 @@ mathjax: true
 
 # hexo：将next主题添加为子模块
 
-<!--more-->
-
 ## 一、将next主题fork至远程仓库
+
+<!--more-->
 
 ## 二、使用 Git submodules 的方式来选择一个主题
 
