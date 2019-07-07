@@ -12,8 +12,6 @@ mathjax: true
 
 ## 一、将next主题fork至远程仓库
 
-<!--more-->
-
 ## 二、使用 Git submodules 的方式来选择一个主题
 
 ```
@@ -21,6 +19,8 @@ git submodule add https://github.com/drggboy/hexo-theme-next.git themes/next
 ```
 
 git 便会将 `hexo-theme-next` 主题作为一个项目子模块 clone 到 themes/next 中. 同时 hexo 项目中会自动生成一个 `.gitmodules` 文件, 这个配置文件中保存了项目 URL 与已经拉取的本地目录之间的映射.
+
+<!--more-->
 
 ## 三、更改主题文件配置
 
