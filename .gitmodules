@@ -1,6 +1,0 @@
-[submodule "themes/landfarz"]
-	path = themes/landfarz
-	url = https://github.com/drggboy/hexo-theme-landfarz.git
-[submodule "themes/next"]
-	path = themes/next
-	url = https://github.com/drggboy/hexo-theme-next.git
