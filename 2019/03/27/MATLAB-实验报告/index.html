@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>有限差分法  实验报告 | 个人博客</title>
+  <meta name="author" content="Drggboy" />
+
+  
+  <meta name="description" content="实验题目利用有限差分法求解$$-u’’(x)+u(x)&amp;#x3D;f(x);\u(-1)&amp;#x3D;0,u(1)&amp;#x3D;0.$$真解为：$$u(x)&amp;#x3D;e^{-x^2}(1-x^2).$$要求如下：
+
+用 sparse 命令组装有限差分矩阵 A。
+算出区间 [-1,1] [-1,1] 分段数为 [5，10，20，40，80，160] 下的数值解及误差，画出数值解图像，并给出误差分析。" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="有限差分法  实验报告" />
+  <meta property="og:site_name" content="个人博客" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="个人博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">个人博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-03-27T13:02:30.000Z"><a href="/2019/03/27/MATLAB-实验报告/">2019-03-27</a></time>
+      
+      
+  
+    <h1 class="title">有限差分法  实验报告</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="实验题目"><a href="#实验题目" class="headerlink" title="实验题目"></a>实验题目</h2><p>利用有限差分法求解<br>$$<br>-u’’(x)+u(x)&#x3D;f(x);\<br>u(-1)&#x3D;0,u(1)&#x3D;0.<br>$$<br>真解为：<br>$$<br>u(x)&#x3D;e^{-x^2}(1-x^2).<br>$$<br>要求如下：</p>
+<ol>
+<li>用 <em>sparse</em> 命令组装有限差分矩阵 A。</li>
+<li>算出区间 [-1,1] [-1,1] 分段数为 [5，10，20，40，80，160] 下的数值解及误差，画出数值解图像，并给出误差分析。</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="实现算法："><a href="#实现算法：" class="headerlink" title="实现算法："></a>实现算法：</h2><p>有限差分法</p>
+<h2 id="程序代码："><a href="#程序代码：" class="headerlink" title="程序代码："></a>程序代码：</h2><h3 id="建立-model-data-m-文件"><a href="#建立-model-data-m-文件" class="headerlink" title="建立 model_data.m 文件"></a>建立 model_data.m 文件</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">model</span> = <span class="title">model_data</span><span class="params">(l, r)</span></span></span><br><span class="line"><span class="comment">% MODEL_DATA 模型数据</span></span><br><span class="line"><span class="comment">% </span></span><br><span class="line"><span class="comment">% Input</span></span><br><span class="line"><span class="comment">% -----</span></span><br><span class="line"><span class="comment">%  l: 区间左端点</span></span><br><span class="line"><span class="comment">%  r: 区间右端点</span></span><br><span class="line"><span class="comment">%%</span></span><br><span class="line"><span class="comment">% </span></span><br><span class="line"><span class="comment">%  PREFORMATTED</span></span><br><span class="line"><span class="comment">% </span></span><br><span class="line"><span class="comment">%  PREFORMATTED</span></span><br><span class="line"><span class="comment">%  TEXT</span></span><br><span class="line"><span class="comment">% </span></span><br><span class="line"><span class="comment">%  TEXT</span></span><br><span class="line"><span class="comment">% </span></span><br><span class="line"> </span><br><span class="line">L = l;</span><br><span class="line">R = r;</span><br><span class="line"><span class="comment">%%</span></span><br><span class="line"><span class="comment">% </span></span><br><span class="line"><span class="comment">%  PREFORMATTED</span></span><br><span class="line"><span class="comment">%  TEXT</span></span><br><span class="line"><span class="comment">% </span></span><br><span class="line"> </span><br><span class="line">model = struct(<span class="string">&#x27;init_mesh&#x27;</span>, @init_mesh, <span class="string">&#x27;solution&#x27;</span>, @solution,...</span><br><span class="line">    <span class="string">&#x27;source&#x27;</span>, @source);</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[X, h]</span> = <span class="title">init_mesh</span><span class="params">(NS)</span></span></span><br><span class="line">    X = <span class="built_in">linspace</span>(L, R,NS+<span class="number">1</span>)&#x27;;</span><br><span class="line">    h = (R - L)/NS;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">u</span> = <span class="title">solution</span><span class="params">(x)</span></span></span><br><span class="line"><span class="comment">%     u=sin(4*pi*x);</span></span><br><span class="line">        u=(<span class="number">1</span>-x.^<span class="number">2</span>).*<span class="built_in">exp</span>(-(x.^<span class="number">2</span>));           <span class="comment">%真值函数</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span> = <span class="title">source</span><span class="params">(x)</span></span></span><br><span class="line"><span class="comment">%     f=16*pi*pi*sin(4*pi*x);</span></span><br><span class="line">        f=(<span class="number">1</span>-x.^<span class="number">2</span>).*<span class="built_in">exp</span>(-(x.^<span class="number">2</span>))-<span class="built_in">exp</span>(-(x.^<span class="number">2</span>)).*(<span class="number">14</span>*(x.^<span class="number">2</span>)<span class="number">-4</span>*(x.^<span class="number">4</span>)<span class="number">-4</span>);   <span class="comment">%等式右端函数</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="建立-FDld-bvp-m-文件"><a href="#建立-FDld-bvp-m-文件" class="headerlink" title="建立 FDld_bvp.m 文件"></a>建立 FDld_bvp.m 文件</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[uh, x]</span> = <span class="title">FD1d_bvp</span><span class="params">(model, NS)</span></span></span><br><span class="line"><span class="comment">%*************************************************************</span></span><br><span class="line"><span class="comment">%% FD1d_bvp 利用中心差分格式求解两点边值问题.</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% Input</span></span><br><span class="line"><span class="comment">% -----</span></span><br><span class="line"><span class="comment">%   model : 模型数据</span></span><br><span class="line"><span class="comment">%   NS    ：网格剖分段数</span></span><br><span class="line"><span class="comment">% Output</span></span><br><span class="line"><span class="comment">% ------</span></span><br><span class="line"><span class="comment">%   uh ：列向量，长度为 NS+1， 解向量</span></span><br><span class="line"><span class="comment">%   x  : 列向量，长度为 NS+1， 网格节点</span></span><br><span class="line"><span class="comment">%      </span></span><br><span class="line"> </span><br><span class="line">[x, h] = model.init_mesh(NS);</span><br><span class="line">NV = NS + <span class="number">1</span>;</span><br><span class="line"> </span><br><span class="line"> <span class="comment">%</span></span><br><span class="line"> <span class="comment">%  创建线性差分方程组系数矩阵</span></span><br><span class="line"> <span class="comment">%</span></span><br><span class="line"> </span><br><span class="line">c1 = <span class="number">-1</span>/h/h;</span><br><span class="line">c2 = <span class="number">2</span>/h/h;</span><br><span class="line">g = [c1*<span class="built_in">ones</span>(<span class="number">1</span>, NV<span class="number">-2</span>), <span class="number">0</span>];</span><br><span class="line">c = [<span class="number">0</span>, c1*<span class="built_in">ones</span>(<span class="number">1</span>, NV<span class="number">-2</span>)];</span><br><span class="line">d = [<span class="number">1</span>, c2*<span class="built_in">ones</span>(<span class="number">1</span>, NV<span class="number">-2</span>)+<span class="number">1</span>, <span class="number">1</span>];</span><br><span class="line">A = <span class="built_in">diag</span>(g, <span class="number">-1</span>) + <span class="built_in">diag</span>(d) + <span class="built_in">diag</span>(c,<span class="number">1</span>);</span><br><span class="line">A = sparse(A);</span><br><span class="line"> </span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">%  创建线性差分方程组右端项</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"> </span><br><span class="line">rhs = model.source(x);</span><br><span class="line">rhs(<span class="number">1</span>) = model.solution(x(<span class="number">1</span>));</span><br><span class="line">rhs(<span class="keyword">end</span>) = model.solution(x(<span class="keyword">end</span>));</span><br><span class="line"> </span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">%  求解上述代数系统.</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"> </span><br><span class="line">uh = A \ rhs;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="建立-FD1d-bvp-test-m-文件"><a href="#建立-FD1d-bvp-test-m-文件" class="headerlink" title="建立 FD1d_bvp_test.m 文件"></a>建立 FD1d_bvp_test.m 文件</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[uh, x]</span> = <span class="title">FD1d_bvp</span><span class="params">(model, NS)</span></span></span><br><span class="line"><span class="comment">%*************************************************************</span></span><br><span class="line"><span class="comment">%% FD1d_bvp 利用中心差分格式求解两点边值问题.</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% Input</span></span><br><span class="line"><span class="comment">% -----</span></span><br><span class="line"><span class="comment">%   model : 模型数据</span></span><br><span class="line"><span class="comment">%   NS    ：网格剖分段数</span></span><br><span class="line"><span class="comment">% Output</span></span><br><span class="line"><span class="comment">% ------</span></span><br><span class="line"><span class="comment">%   uh ：列向量，长度为 NS+1， 解向量</span></span><br><span class="line"><span class="comment">%   x  : 列向量，长度为 NS+1， 网格节点</span></span><br><span class="line"><span class="comment">%      </span></span><br><span class="line"> </span><br><span class="line">[x, h] = model.init_mesh(NS);</span><br><span class="line">NV = NS + <span class="number">1</span>;</span><br><span class="line"> </span><br><span class="line"> <span class="comment">%</span></span><br><span class="line"> <span class="comment">%  创建线性差分方程组系数矩阵</span></span><br><span class="line"> <span class="comment">%</span></span><br><span class="line"> </span><br><span class="line">c1 = <span class="number">-1</span>/h/h;</span><br><span class="line">c2 = <span class="number">2</span>/h/h;</span><br><span class="line">g = [c1*<span class="built_in">ones</span>(<span class="number">1</span>, NV<span class="number">-2</span>), <span class="number">0</span>];</span><br><span class="line">c = [<span class="number">0</span>, c1*<span class="built_in">ones</span>(<span class="number">1</span>, NV<span class="number">-2</span>)];</span><br><span class="line">d = [<span class="number">1</span>, c2*<span class="built_in">ones</span>(<span class="number">1</span>, NV<span class="number">-2</span>)+<span class="number">1</span>, <span class="number">1</span>];</span><br><span class="line">A = <span class="built_in">diag</span>(g, <span class="number">-1</span>) + <span class="built_in">diag</span>(d) + <span class="built_in">diag</span>(c,<span class="number">1</span>);</span><br><span class="line">A = sparse(A);</span><br><span class="line"> </span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">%  创建线性差分方程组右端项</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"> </span><br><span class="line">rhs = model.source(x);</span><br><span class="line">rhs(<span class="number">1</span>) = model.solution(x(<span class="number">1</span>));</span><br><span class="line">rhs(<span class="keyword">end</span>) = model.solution(x(<span class="keyword">end</span>));</span><br><span class="line"> </span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">%  求解上述代数系统.</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"> </span><br><span class="line">uh = A \ rhs;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="建立-FD1d-error-m-文件"><a href="#建立-FD1d-error-m-文件" class="headerlink" title="建立 FD1d_error.m 文件"></a>建立 FD1d_error.m 文件</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[e0, e1, emax]</span> = <span class="title">FD1d_error</span><span class="params">(solution, uh, X)</span></span></span><br><span class="line">NN = <span class="built_in">length</span>(X);</span><br><span class="line">h = (X(<span class="keyword">end</span>) - X(<span class="number">1</span>))/(NN <span class="number">-1</span>);</span><br><span class="line">u = solution(X);</span><br><span class="line">ee= u - uh;</span><br><span class="line"> </span><br><span class="line">e0 = h*sum(ee.^<span class="number">2</span>);</span><br><span class="line">e1 = sum((ee(<span class="number">2</span>:<span class="keyword">end</span>)-ee(<span class="number">1</span>:<span class="keyword">end</span><span class="number">-1</span>)).^<span class="number">2</span>)/h;</span><br><span class="line">e1 = e1+e0;</span><br><span class="line"> </span><br><span class="line">e0 = <span class="built_in">sqrt</span>(e0);          <span class="comment">%三种不同误差项</span></span><br><span class="line">e1 = <span class="built_in">sqrt</span>(e1);</span><br><span class="line">emax=<span class="built_in">max</span>(<span class="built_in">abs</span>(ee));</span><br><span class="line"> </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="实验结果与分析："><a href="#实验结果与分析：" class="headerlink" title="实验结果与分析："></a>实验结果与分析：</h2><h3 id="拟合图像："><a href="#拟合图像：" class="headerlink" title="拟合图像："></a>拟合图像：</h3><p><img src="/MATLAB-%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%5C%E6%8B%9F%E5%90%88%E5%9B%BE%E5%83%8F.png" alt="拟合图像"></p>
+<h3 id="稀疏矩阵A部分项："><a href="#稀疏矩阵A部分项：" class="headerlink" title="稀疏矩阵A部分项："></a>稀疏矩阵A部分项：</h3><p><img src="/MATLAB-%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%5C%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5A.png" alt="稀疏矩阵A"></p>
+<h3 id="误差项"><a href="#误差项" class="headerlink" title="误差项:"></a>误差项:</h3><p><img src="/MATLAB-%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%5C%E8%AF%AF%E5%B7%AE%E9%A1%B9.png" alt="误差项"></p>
+<h3 id="结果分析："><a href="#结果分析：" class="headerlink" title="结果分析："></a>结果分析：</h3><p>　　随着网格剖分段数的不断增多，画出的图像越来越接近于真值图像，误差也越来越小，根据有限差分方法，当剖分段数不断增多，h趋向于零时，解向量收敛于真值向量。</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:example.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/hexo/">hexo</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2022/07/09/hello-world/">Hello World</a>
+      </li>
+    
+      <li>
+        <a href="/2019/07/07/实习任务大纲/">软件测试实习任务大纲</a>
+      </li>
+    
+      <li>
+        <a href="/2019/05/09/hexo：将next主题添加为子模块/">hexo：将next主题添加为子模块</a>
+      </li>
+    
+      <li>
+        <a href="/2019/03/27/MATLAB-实验报告/">有限差分法  实验报告</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/next/">next</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/next/" style="font-size: 10px;">next</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2022 Drggboy
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

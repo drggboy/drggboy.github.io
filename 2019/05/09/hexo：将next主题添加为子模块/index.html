@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>hexo：将next主题添加为子模块 | 个人博客</title>
+  <meta name="author" content="Drggboy" />
+
+  
+  <meta name="description" content="一、将next主题fork至远程仓库二、使用 Git submodules 的方式来选择一个主题1git submodule add https://github.com/drggboy/hexo-theme-next.git themes/next
+
+git 便会将 hexo-theme-next 主题作为一个项目子模块 clone 到 themes&amp;#x2F;next 中. 同时 hexo 项目中会自动生成一个 .gitmodules 文件, 这个配置文件中保存了项目 URL 与已经拉取的本地目录之间的映射." />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="hexo：将next主题添加为子模块" />
+  <meta property="og:site_name" content="个人博客" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="个人博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">个人博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-05-09T13:31:28.000Z"><a href="/2019/05/09/hexo：将next主题添加为子模块/">2019-05-09</a></time>
+      
+      
+  
+    <h1 class="title">hexo：将next主题添加为子模块</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="一、将next主题fork至远程仓库"><a href="#一、将next主题fork至远程仓库" class="headerlink" title="一、将next主题fork至远程仓库"></a>一、将next主题fork至远程仓库</h2><h2 id="二、使用-Git-submodules-的方式来选择一个主题"><a href="#二、使用-Git-submodules-的方式来选择一个主题" class="headerlink" title="二、使用 Git submodules 的方式来选择一个主题"></a>二、使用 Git submodules 的方式来选择一个主题</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule add https://github.com/drggboy/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
+
+<p>git 便会将 <code>hexo-theme-next</code> 主题作为一个项目子模块 clone 到 themes&#x2F;next 中. 同时 hexo 项目中会自动生成一个 <code>.gitmodules</code> 文件, 这个配置文件中保存了项目 URL 与已经拉取的本地目录之间的映射.</p>
+<span id="more"></span>
+
+<h2 id="三、更改主题文件配置"><a href="#三、更改主题文件配置" class="headerlink" title="三、更改主题文件配置"></a>三、更改主题文件配置</h2><h2 id="四、提交子模块的更改"><a href="#四、提交子模块的更改" class="headerlink" title="四、提交子模块的更改"></a>四、提交子模块的更改</h2><p>（1）进入主题文件夹，将子模块的更改推送至远程仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &#x27;启用mathjax&#x27;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p>（2）或者直接在根目录下 push 时通过 <code>git push --recurse-submodules=check</code> 命令,  如果任何提交的子模块改动没有推送那么 check 选项会直接使 push 操作失败.</p>
+<p>（3）另外也可以使用 <code>git push --recurse-submodules=on-demand</code> git 会自动尝试推送变更的子项目.</p>
+<p>（4）运行批处理文件 deploy.sh.</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/hexo/">hexo</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/next/">next</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:example.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/hexo/">hexo</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2022/07/09/hello-world/">Hello World</a>
+      </li>
+    
+      <li>
+        <a href="/2019/07/07/实习任务大纲/">软件测试实习任务大纲</a>
+      </li>
+    
+      <li>
+        <a href="/2019/05/09/hexo：将next主题添加为子模块/">hexo：将next主题添加为子模块</a>
+      </li>
+    
+      <li>
+        <a href="/2019/03/27/MATLAB-实验报告/">有限差分法  实验报告</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/next/">next</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/next/" style="font-size: 10px;">next</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2022 Drggboy
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>
